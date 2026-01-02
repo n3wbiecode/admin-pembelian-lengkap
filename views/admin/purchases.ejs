@@ -1,0 +1,40 @@
+<h3 class="mb-4">🧾 Data Pembelian</h3>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <table class="table table-bordered table-hover">
+      <thead class="table-secondary">
+        <tr>
+          <th>Produk</th>
+          <th>Qty</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% purchases.forEach(p => { %>
+        <tr>
+          <td><%= p.name %></td>
+          <td><%= p.quantity %></td>
+          <td>Rp <%= p.total_price.toLocaleString('id-ID') %></td>
+          <td>
+            <span class="badge <%= p.status === 'ACTIVE' ? 'bg-success' : 'bg-danger' %>">
+              <%= p.status %>
+            </span>
+          </td>
+          <td>
+            <% if (p.status === 'ACTIVE') { %>
+              <form method="POST" action="/cancel/<%= p.id %>">
+                <button class="btn btn-danger btn-sm">
+                  <i class="bi bi-x-circle"></i> Cancel
+                </button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>

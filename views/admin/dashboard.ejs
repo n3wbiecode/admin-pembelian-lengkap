@@ -1,0 +1,50 @@
+<h3 class="mb-4">📦 Dashboard Produk</h3>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Produk</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th width="200">Pembelian</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (products.length> 0) { %>
+                    <% products.forEach(p=> { %>
+                        <tr>
+                            <td><strong>
+                                    <%= p.name %>
+                                </strong></td>
+                            <td>Rp <%= p.price.toLocaleString('id-ID') %>
+                            </td>
+                            <td>
+                                <span class="badge <%= p.quantity < 10 ? 'bg-danger' : 'bg-success' %>">
+                                    <%= p.quantity %>
+                                </span>
+                            </td>
+                            <td>
+                                <form method="POST" action="/buy" class="d-flex gap-2">
+                                    <input type="hidden" name="product_id" value="<%= p.id %>">
+                                    <input type="number" name="quantity" class="form-control form-control-sm" min="1"
+                                        required>
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="bi bi-cart-plus">Beli</i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted">
+                                        Data produk belum tersedia
+                                    </td>
+                                </tr>
+                                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>

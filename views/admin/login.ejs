@@ -1,0 +1,13 @@
+<div class="card shadow p-4" style="width:350px">
+    <h4 class="text-center mb-3">🔐 Login Admin</h4>
+
+    <% if (error) { %>
+        <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <form method="POST" action="/login">
+        <input type="text" name="username" class="form-control mb-2" placeholder="Username" required>
+        <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+        <button class="btn btn-dark w-100">Login</button>
+    </form>
+</div>
